@@ -1,0 +1,4 @@
+'use client';
+import {motion,useReducedMotion} from 'framer-motion';
+export function Balls({numbers}:{numbers:number[]}){const reduce=useReducedMotion();return <div className="balls" aria-label={`번호 ${numbers.join(', ')}`}>{numbers.map((n,i)=><motion.span initial={reduce?false:{y:8,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:i*.04,duration:.2}} className={`ball b${Math.ceil(n/10)}`} key={n}>{n}</motion.span>)}</div>}
+export function Slip({games}:{games:number[][]}){return <div className="slips">{Array.from({length:5},(_,i)=><div key={i} className="slip"><strong>{'ABCDE'[i]}</strong><div className="grid7">{Array.from({length:45},(_,j)=><span key={j} className={games[i]?.includes(j+1)?'marked':''} aria-label={`${j+1}${games[i]?.includes(j+1)?' 선택':''}`}>{j+1}{games[i]?.includes(j+1)?'●':''}</span>)}</div></div>)}</div>}
